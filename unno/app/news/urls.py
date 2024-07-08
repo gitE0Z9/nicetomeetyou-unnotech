@@ -1,4 +1,9 @@
-from django.urls import path
-from . import views
+from rest_framework.routers import SimpleRouter
 
-urlpatterns = []
+from .views import NewsViewSet
+
+router = SimpleRouter()
+
+router.register("", NewsViewSet, basename="news")
+
+urlpatterns = router.urls
