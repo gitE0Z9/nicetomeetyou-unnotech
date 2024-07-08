@@ -3,7 +3,7 @@ __pycache__
 static
 
 # private
-.env
+*.env
 
 # mac
 .DS_Store
