@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/news-list.css' %}" />
+{% endblock %}
+
+{% block title %}
+UDN NBA新聞
+{% endblock %}
+
+
+{% block content %}
+<main id="news-list-container">
+  <section class="container my-4">
+    <h1>新聞列表</h1>
+    <ul id="news-list" class="list-group"></ul>
+    <p id="more" class="text-center my-2">更多</p>
+  </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/news-list.js' %}"></script>
+{% endblock %}
