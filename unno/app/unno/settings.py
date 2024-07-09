@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 INSTALLED_APPS = [
+    "django_q",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -132,4 +133,28 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10,
+}
+
+
+# django q
+Q_CLUSTER = {
+    "name": "unno",
+    "label": "任務管理",
+    "workers": 4,
+    "recycle": 500,  # garbage collection
+    "retry": 600,
+    "timeout": 60,
+    "compress": True,
+    "save_limit": 250,  # how many successful task can store
+    "queue_limit": 64,  # default workers**2
+    "cpu_affinity": 1,  # how many cpu a worker can use
+    "ack_failures": True,
+    "max_attempts": 1,
+    "attempt_count": 1,
+    "redis": {
+        "host": os.environ.get("REDIS_HOST"),
+        "port": os.environ.get("REDIS_PORT"),
+        # "password": os.environ.get("REDIS_PASSWORD"),
+        "db": 1,
+    },
 }
