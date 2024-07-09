@@ -4,7 +4,11 @@ services:
   app:
     container_name: unno-app
     image: unno-app
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Dockerfile
+      # Dockerfile.production
     volumes:
       - ./app:/app
     ports:
@@ -12,9 +16,9 @@ services:
     env_file:
       - ./envs/app.env
     command: sh -c "DJANGO_SETTINGS_MODULE=unno.local_settings python manage.py runserver 0.0.0.0:8000"
-      # - DJANGO_SETTINGS_MODULE=unno.local_settings tail -f /dev/null
-      # - DJANGO_SETTINGS_MODULE=unno.local_settings python manage.py runserver 0.0.0.0:8000
-      # - DJANGO_SETTINGS_MODULE=unno.production_settings gunicorn unno.wsgi:application
+      # DJANGO_SETTINGS_MODULE=unno.local_settings tail -f /dev/null
+      # DJANGO_SETTINGS_MODULE=unno.local_settings python manage.py runserver 0.0.0.0:8000
+      # DJANGO_SETTINGS_MODULE=unno.production_settings gunicorn unno.wsgi:application
     networks:
       - unno
   db:

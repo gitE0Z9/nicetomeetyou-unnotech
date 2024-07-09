@@ -7,7 +7,7 @@ from pyquery import PyQuery
 
 
 class UdnNbaSpider:
-    def __init__(self, channel_id: int, max_page: int = 10):
+    def __init__(self, channel_id: int = 2000, max_page: int = 10):
         self.channel_id = channel_id
         self.max_page = max_page
         self.url_template = "https://tw-nba.udn.com/api/more?channel_id={channel_id}&type=index&page={page}"
@@ -15,7 +15,7 @@ class UdnNbaSpider:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
         }
 
-    def run(self) -> list:
+    def run(self):
         for page in range(1, self.max_page + 1, 1):
             url = self.get_url(page)
             response = self.get(url)
