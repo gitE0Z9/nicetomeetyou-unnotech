@@ -1,5 +1,7 @@
 FROM python:3.10
 
+ENV DJANGO_SETTINGS_MODULE unno.local_settings
+
 COPY app /app
 
 WORKDIR /app
