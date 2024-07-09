@@ -19,7 +19,7 @@ class NewsDetailView(TemplateView):
 class NewsViewSet(ModelViewSet):
     queryset = News.objects.all()
     http_method_names = ["get"]
-    ordering = "-id"
+    ordering = "-post_time"
     pagination_class = CursorPagination
     filter_backends = [
         OrderingFilter,
