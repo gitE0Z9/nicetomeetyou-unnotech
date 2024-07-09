@@ -15,17 +15,24 @@ services:
       - 8000:8000
     env_file:
       - ./envs/app.env
-    command: sh -c "DJANGO_SETTINGS_MODULE=unno.local_settings python manage.py runserver 0.0.0.0:8000"
-      # DJANGO_SETTINGS_MODULE=unno.local_settings tail -f /dev/null
-      # DJANGO_SETTINGS_MODULE=unno.local_settings python manage.py runserver 0.0.0.0:8000
-      # DJANGO_SETTINGS_MODULE=unno.production_settings gunicorn unno.wsgi:application
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+      # tail -f /dev/null
+      # python manage.py runserver 0.0.0.0:8000
+      # gunicorn unno.wsgi:application
     networks:
       - unno
   db:
-    container_name: unno-mysql
-    image: mysql:8
+    container_name: unno-postgres
+    image: postgres:14
     env_file:
       - ./envs/db.env
+    networks:
+      - unno
+  broker:
+    container_name: unno-redis
+    image: redis:7.0
+    env_file:
+      - ./envs/broker.env
     networks:
       - unno
 
