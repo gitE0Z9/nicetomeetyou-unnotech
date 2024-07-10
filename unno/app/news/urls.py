@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, re_path
 from rest_framework.routers import SimpleRouter
 
 from . import views
-
+from .consumers import NewsListConsumer
 
 # api
 router = SimpleRouter()
@@ -16,3 +16,8 @@ page_urlpatterns = [
 ]
 
 urlpatterns = router.urls
+
+# ws
+websocket_urlpatterns = [
+    re_path(r"news/$", NewsListConsumer.as_asgi()),
+]

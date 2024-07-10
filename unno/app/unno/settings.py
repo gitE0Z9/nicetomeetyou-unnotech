@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 INSTALLED_APPS = [
+    "channels",
     "django_q",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -194,5 +195,21 @@ Q_CLUSTER = {
         "port": os.environ.get("REDIS_PORT"),
         # "password": os.environ.get("REDIS_PASSWORD"),
         "db": 1,
+    },
+}
+
+# django-channels
+ASGI_APPLICATION = "unno.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                (
+                    os.environ["REDIS_HOST"],
+                    os.environ["REDIS_PORT"],
+                ),
+            ],
+        },
     },
 }
