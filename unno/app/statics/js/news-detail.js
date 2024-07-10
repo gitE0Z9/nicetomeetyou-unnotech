@@ -4,7 +4,7 @@
  * @param {callback} callback 
  */
 const getNewsDetail = async (postId, callback) => {
-    const url = 'http://localhost:8000/api/v1/news/'
+    const url = '/api/v1/news/'
     $.getJSON(url + postId, function (response) {
         const data = response;
         callback(data);

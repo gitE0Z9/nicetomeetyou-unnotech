@@ -3,7 +3,7 @@ var state = {
 }
 
 
-// const url = "ws://localhost:8000/api/v1/news";
+// const url = "/api/v1/news";
 // const socket = new WebSocket(url);
 
 // socket.onopen((event) => {
@@ -30,7 +30,7 @@ const fetchNewsList = (nextUrl) => {
     const listElement = $('#news-list');
     const moreElement = $('#more');
 
-    const url = 'http://localhost:8000/api/v1/news'
+    const url = '/api/v1/news'
     $.getJSON(nextUrl ?? url, function (response) {
         const data = response.results;
         for (const item of data) {
