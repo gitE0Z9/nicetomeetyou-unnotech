@@ -2,26 +2,6 @@ var state = {
     nextUrl: ""
 }
 
-
-// const url = "/api/v1/news";
-// const socket = new WebSocket(url);
-
-// socket.onopen((event) => {
-
-// });
-
-// socket.onmessage((event) => {
-
-// });
-
-// socket.onerror((event) => {
-
-// });
-
-// socket.onclose((event) => {
-
-// });
-
 /**
  * 
  * @param {string} nextUrl 
@@ -59,10 +39,26 @@ const fetchMore = () => {
     });
 }
 
+const updateNotification = () => {
+    const url = "/news";
+    const socket = new WebSocket(url);
+
+    socket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+
+        if (data.updated) {
+            $('#toast').toast('show');
+        }
+    };
+}
+
 $(document).ready(() => {
     // init: hide more button
     const moreElement = $('#more');
     moreElement.hide();
+
+    // init: news list update notification
+    updateNotification();
 
     // init: populate list
     fetchNewsList(null);
