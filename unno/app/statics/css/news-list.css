@@ -1,3 +1,8 @@
 #more {
     cursor: pointer;
 }
+
+#toast-container{
+    top: 0;
+    right: 0;
+}
