@@ -19,5 +19,5 @@ urlpatterns = router.urls
 
 # ws
 websocket_urlpatterns = [
-    re_path(r"news/$", NewsListConsumer.as_asgi()),
+    re_path(r"^ws/news/$", NewsListConsumer.as_asgi()),
 ]
