@@ -15,7 +15,9 @@ class UdnNbaSpider:
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
         }
 
-    def run(self):
+    def run(self) -> int:
+        count = 0
+
         for page in range(1, self.max_page + 1, 1):
             url = self.get_url(page)
             response = self.get(url)
@@ -24,7 +26,9 @@ class UdnNbaSpider:
                 page_response = self.get(link)
                 data = self.parse(page_response)
                 self.show(data)
-                self.save(data)
+                count += self.save(data)
+
+        return count
 
     def get(self, url: str) -> str:
         response = requests.get(
@@ -69,5 +73,10 @@ class UdnNbaSpider:
     def show(self, data: dict):
         print(data)
 
-    def save(self, data: dict):
-        News.objects.update_or_create(**data)
+    def save(self, data: dict) -> int:
+        count = 0
+        _, created = News.objects.update_or_create(**data)
+        if created:
+            count += 1
+
+        return count
