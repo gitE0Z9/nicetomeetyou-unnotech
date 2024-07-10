@@ -40,14 +40,14 @@ const fetchMore = () => {
 }
 
 const updateNotification = () => {
-    const url = "/news";
+    const url = "/news/";
     const socket = new WebSocket(url);
 
     socket.onmessage = function (event) {
         const data = JSON.parse(event.data);
 
         if (data.updated) {
-            $('#toast').toast('show');
+            $('#toast').toast('show', {delay: 5000});
         }
     };
 }
