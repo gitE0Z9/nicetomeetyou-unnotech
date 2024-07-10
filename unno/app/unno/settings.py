@@ -181,7 +181,7 @@ Q_CLUSTER = {
     "workers": 4,
     "recycle": 500,  # garbage collection
     "retry": 600,
-    "timeout": 60,
+    "timeout": 600,
     "compress": True,
     "save_limit": 250,  # how many successful task can store
     "queue_limit": 64,  # default workers**2
