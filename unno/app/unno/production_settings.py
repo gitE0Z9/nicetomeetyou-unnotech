@@ -4,7 +4,9 @@ from .settings import *
 
 SECRET_KEY = os.environ["SECRET_KEY"]
 
-ALLOWED_HOSTS = ["weitravel.herokuapp.com"]
+ALLOWED_HOSTS = [
+    os.environ["BACKEND_DOMAIN"],
+]
 
 DEBUG = False
 
