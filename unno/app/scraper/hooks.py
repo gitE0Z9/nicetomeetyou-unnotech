@@ -15,4 +15,4 @@ def finish_crawl_udn_nba(task):
         )
 
     if task.result:
-        send_ws_msg({"updated": 1})
+        send_ws_msg("update", "list.update", {"updated": 1})
