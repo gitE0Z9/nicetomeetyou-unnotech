@@ -75,7 +75,12 @@ class UdnNbaSpider:
 
     def save(self, data: dict) -> int:
         count = 0
-        _, created = News.objects.update_or_create(**data)
+        _, created = News.objects.update_or_create(
+            **data,
+            defaults={
+                "source_url": data["source_url"],
+            },
+        )
         if created:
             count += 1
 
