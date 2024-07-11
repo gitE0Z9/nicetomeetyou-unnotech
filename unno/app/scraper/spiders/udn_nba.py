@@ -1,3 +1,4 @@
+from pprint import pprint
 from typing import Generator
 
 import requests
@@ -71,7 +72,7 @@ class UdnNbaSpider:
         )
 
     def show(self, data: dict):
-        print(data)
+        pprint(data)
 
     def save(self, data: dict) -> int:
         count = 0
